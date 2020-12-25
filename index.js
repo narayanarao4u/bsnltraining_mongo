@@ -17,14 +17,25 @@ MongoClient.connect(connStr, {
     const db = client.db('bsnlTraining')
     const certificatesCollection = db.collection('certificates')
 
+   
+    app.get('/', function(req,res){     
+        res.sendFile(__dirname + '/index.html')
+    });
 
+    app.get('/api', function(req,res){
+        
+        db.collection('certificates').find().toArray()
+            .then(result=>{
+                    res.json(result);
+            })
+            .catch(error => console.error(error))
+
+    });
+   
+    app.listen(process.env.PORT || port, () => console.log(`Example app listening at http://localhost:${port}`)); 
 }).catch(err => console.log(err))
 
 
-app.get('/', function(req,res){     
-  res.sendFile(__dirname + '/index.html')
-});
 
 
-app.listen(process.env.PORT || port, () => console.log(`Example app listening at http://localhost:${port}`));
 
