@@ -1,41 +1,36 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const MongoClient = require('mongodb').MongoClient;
-const app = express();
 
-const port = 3000;
+const app  = express();
 
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json())
+
+// const connStr = "mongodb://localhost:27017/Bpc";
 const connStr = 'mongodb+srv://vmssa:bsnlvizag@bsnlcertificate.cvskb.mongodb.net/bsnlTraining';
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
-app.use(bodyParser.urlencoded({extended:true}));
+// Connecting to the database
+mongoose.connect(connStr, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: true 
+}).then(() => {
+    console.log("Successfully connected to the database");    
+}).catch(err => {
+    console.log('Could not connect to the database. Exiting now...', err);
+    process.exit();
+});
 
-
-MongoClient.connect(connStr, {
-    useUnifiedTopology:true
-}).then(client =>{
-    console.log('Connected to Database');
-    const db = client.db('bsnlTraining')
-    const certificatesCollection = db.collection('certificates')
-
-   
-    app.get('/', function(req,res){     
-        res.sendFile(__dirname + '/index.html')
-    });
-
-    app.get('/api', function(req,res){
-        
-        db.collection('certificates').find().toArray()
-            .then(result=>{
-                    res.json(result);
-            })
-            .catch(error => console.error(error))
-
-    });
-   
-    app.listen(process.env.PORT || port, () => console.log(`Example app listening at http://localhost:${port}`)); 
-}).catch(err => console.log(err))
+app.get('/',(req,res)=>{
+    res.send('Hello Mongo');
+});
 
 
+// Use Api routes in the App
+let apiRoutes = require("./api-route");
+app.use('/api', apiRoutes);
 
-
-
+const port = process.env.PORT || 3000;
+app.listen(port, ()=>console.log(`listening port : ${port}`));
