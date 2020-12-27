@@ -1,8 +1,8 @@
-const Document = require('./data.model').Student;
+const Document = require('../data.model').Student;
 
 
 exports.index =  function(req, res){
-     
+
     Document.find((err, result) => {
         if (!err)
             res.json({ msg: 'Data Retrive Success', data: result });
@@ -13,11 +13,10 @@ exports.index =  function(req, res){
 }
 
 exports.new =  function(req, res){
-    var doc = new Document(req.body);
-    
+    var doc = new Document(req.body);    
     doc.save((err, result) => {
         if (!err)
-            res.json({ msg: 'Insert Success', data: result });
+            res.json({ msg: 'Insert Success...', data: result });
         else
             res.json({ msg: 'Error during record insertion ', err : err });
     });
