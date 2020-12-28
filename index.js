@@ -17,8 +17,8 @@ app.use(allowCrossDomain);
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 
-// const connStr = "mongodb://localhost:27017/Bpc";
-const connStr = 'mongodb+srv://vmssa:bsnlvizag@bsnlcertificate.cvskb.mongodb.net/bsnlTraining';
+ const connStr = "mongodb://localhost:27017/Bpc";
+//const connStr = 'mongodb+srv://vmssa:bsnlvizag@bsnlcertificate.cvskb.mongodb.net/bsnlTraining';
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 

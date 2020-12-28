@@ -28,5 +28,9 @@ router.route('/certificate')
     .post(certificate.new)
     .put(certificate.update)
     .delete(certificate.delete)
+ 
+   
+router.route('/findcertificate')
+.post(certificate.find) 
 
 module.exports = router;

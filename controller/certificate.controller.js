@@ -2,10 +2,20 @@ const Document = require('../data.model').Certificate;
 
 
 exports.index =  function(req, res){
-
     Document.find((err, result) => {
         if (!err)
             res.json({ msg: 'Data Retrive Success', data: result });
+        else
+            res.json({ msg: 'Data Retrive failed', err : err });
+    });
+
+}
+
+
+exports.find =  function(req, res){
+     Document.find(req.body, (err, result) => {
+        if (!err)
+            res.json({ msg: 'Data Found Success', data: result });
         else
             res.json({ msg: 'Data Retrive failed', err : err });
     });
@@ -33,7 +43,9 @@ exports.update =  function(req, res){
 
 
 exports.delete =  function(req, res){
+    
     Document.findOneAndDelete({ _id: req.body._id }, (err, result) => {
+            
         if (!err) { res.json({msg :'Delete Success'}); }
         else { res.json({msg:'failed to Delete : ', err: err}); }
     });
