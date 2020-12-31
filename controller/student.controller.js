@@ -2,8 +2,17 @@ const Document = require('../data.model').Student;
 
 
 exports.index =  function(req, res){
-
     Document.find((err, result) => {
+        if (!err)
+            res.json({ msg: 'Data Retrive Success', data: result });
+        else
+            res.json({ msg: 'Data Retrive failed', err : err });
+    });
+
+}
+
+exports.findid =  function(req, res){
+    Document.findOne({_id : req.params.id}, (err, result) => {
         if (!err)
             res.json({ msg: 'Data Retrive Success', data: result });
         else

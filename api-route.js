@@ -17,6 +17,9 @@ router.route('/student')
     .put(student.update)
     .delete(student.delete)
 
+router.route('/student/:id')
+    .get(student.findid)
+
 router.route('/course')
     .get(course.index)
     .post(course.new)
