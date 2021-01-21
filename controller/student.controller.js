@@ -21,8 +21,18 @@ exports.findid =  function(req, res){
 
 }
 
+exports.find =  function(req, res){
+    Document.find(req.body, (err, result) => {
+        if (!err)
+            res.json({ msg: 'Data Retrive Success', data: result });
+        else
+            res.json({ msg: 'Data Retrive failed', err : err });
+    });
+
+}
+
 exports.new =  function(req, res){
-    var doc = new Document(req.body);    
+    var doc = new Document(req.body);
     doc.save((err, result) => {
         if (!err)
             res.json({ msg: 'Insert Success...', data: result });

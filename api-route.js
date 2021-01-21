@@ -20,6 +20,10 @@ router.route('/student')
 router.route('/student/:id')
     .get(student.findid)
 
+router.route('/findstudent/')
+        .post(student.find)
+
+
 router.route('/course')
     .get(course.index)
     .post(course.new)
@@ -31,9 +35,9 @@ router.route('/certificate')
     .post(certificate.new)
     .put(certificate.update)
     .delete(certificate.delete)
- 
-   
+
+
 router.route('/findcertificate')
-.post(certificate.find) 
+.post(certificate.find)
 
 module.exports = router;

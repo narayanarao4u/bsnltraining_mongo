@@ -37,7 +37,12 @@ const StudentSchema = mongoose.Schema({
     email: {
         type:String,
         required:true
-    }
+    },
+    status: {
+        type:String,
+        default: 'Registered'
+    },
+
 },
     {
         timestamps: true,
