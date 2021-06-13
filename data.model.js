@@ -7,6 +7,13 @@ const NoteSchema = mongoose.Schema({
     timestamps: true
 });
 
+const CollegeSchema = mongoose.Schema({
+    collegeName: String,
+    collegeDistrict: String
+}, {
+    timestamps: true
+});
+
 const CourseSchema = mongoose.Schema({
     courseType: String,
     courseName: String,
@@ -53,3 +60,4 @@ module.exports.Student = mongoose.model('Student', StudentSchema);
 module.exports.Note = mongoose.model('Note', NoteSchema);
 module.exports.Certificate = mongoose.model('Certificate', CertificateSchema);
 module.exports.Course = mongoose.model('Course', CourseSchema);
+module.exports.College = mongoose.model('College', CollegeSchema);

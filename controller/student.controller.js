@@ -2,7 +2,7 @@ const Document = require('../data.model').Student;
 
 
 exports.index =  function(req, res){
-    Document.find((err, result) => {
+    Document.find({status:{$ne:'DELETE'}}, (err, result) => {
         if (!err)
             res.json({ msg: 'Data Retrive Success', data: result });
         else
@@ -52,6 +52,7 @@ exports.update =  function(req, res){
 
 
 exports.delete =  function(req, res){
+    console.log(req.body);
     Document.remove({ _id: req.body._id }, (err, result) => {
         if (!err) { res.json({msg :'Delete Success'}); }
         else { res.json({msg:'failed to Delete : ', err: err}); }

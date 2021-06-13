@@ -3,6 +3,7 @@ const router = require('express').Router();
 let student = require('./controller/student.controller');
 let course = require('./controller/course.controller');
 let certificate = require('./controller/certificate.controller');
+let college = require('./controller/college.controller');
 
 router.get('/', (req, res) => {
     res.json({
@@ -10,6 +11,16 @@ router.get('/', (req, res) => {
         message: 'Welcome to RESTHub crafted with love!',
     });
 });
+
+router.route('/college')
+    .get(college.index)
+    .post(college.new)
+    .put(college.update)
+    .delete(college.delete)
+
+router.route('/collegeSort')
+    .get(college.DataSort)
+
 
 router.route('/student')
     .get(student.index)
