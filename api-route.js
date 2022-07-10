@@ -21,7 +21,7 @@ router.route('/college')
 router.route('/collegeSort')
     .get(college.DataSort)
 
-    
+
 
 router.route('/student')
     .get(student.index)
@@ -33,10 +33,10 @@ router.route('/student/:id')
     .get(student.findid)
 
 router.route('/findstudent/')
-        .post(student.find)
+    .post(student.find)
 
 router.route('/reports/collegeStudents')
-            .get(student.collegeStudents)
+    .get(student.collegeStudents)
 
 
 router.route('/course')
@@ -44,6 +44,9 @@ router.route('/course')
     .post(course.new)
     .put(course.update)
     .delete(course.delete)
+
+router.route('/course/:courselink')
+    .get(course.findCoursePage)
 
 router.route('/certificate')
     .get(certificate.index)
@@ -53,6 +56,6 @@ router.route('/certificate')
 
 
 router.route('/findcertificate')
-.post(certificate.find)
+    .post(certificate.find)
 
 module.exports = router;
