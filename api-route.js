@@ -38,7 +38,6 @@ router.route('/findstudent/')
 router.route('/reports/collegeStudents')
     .get(student.collegeStudents)
 
-
 router.route('/course')
     .get(course.index)
     .post(course.new)
