@@ -2,14 +2,12 @@ const Document = require('../data.model').College;
 
 
 exports.index =  function(req, res){
-
     Document.find((err, result) => {
         if (!err)
             res.json({ msg: 'Data Retrive Success', data: result });
         else
             res.json({ msg: 'Data Retrive failed', err : err });
     });
-
 }
 
 exports.DataSort =  function(req, res){

@@ -50,12 +50,29 @@ exports.update =  function(req, res){
 
 }
 
-
 exports.delete =  function(req, res){
     console.log(req.body);
     Document.remove({ _id: req.body._id }, (err, result) => {
         if (!err) { res.json({msg :'Delete Success'}); }
         else { res.json({msg:'failed to Delete : ', err: err}); }
     });
+
+}
+
+exports.collegeStudents = function(req, res){
+    Document.aggregate([
+          	{
+          	    $group: {
+          	    _id:"$college",
+          	    Count:{$sum: 1}
+          	    }
+          	},
+          	{ $sort : { Count: -1 } }
+          ]).exec(function(err, result) {
+            if (!err)
+                res.json({ msg: 'Data Retrive Success', data: result });
+            else
+                res.json({ msg: 'Data Retrive failed', err : err });
+        });
 
 }

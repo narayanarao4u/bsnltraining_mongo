@@ -21,6 +21,7 @@ router.route('/college')
 router.route('/collegeSort')
     .get(college.DataSort)
 
+    
 
 router.route('/student')
     .get(student.index)
@@ -33,6 +34,9 @@ router.route('/student/:id')
 
 router.route('/findstudent/')
         .post(student.find)
+
+router.route('/reports/collegeStudents')
+            .get(student.collegeStudents)
 
 
 router.route('/course')
