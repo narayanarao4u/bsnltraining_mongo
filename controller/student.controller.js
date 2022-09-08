@@ -2,7 +2,7 @@ const Document = require('../data.model').Student;
 
 
 exports.index = function (req, res) {
-    Document.find({ status: { $ne: 'DELETE' } }, (err, result) => {
+    Document.find({ status: { $ne: 'DELETE' }, idNo:{$exists:false} }, (err, result) => {
         if (!err)
             res.json({ msg: 'Data Retrive Success', data: result });
         else
